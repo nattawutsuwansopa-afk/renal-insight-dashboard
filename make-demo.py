@@ -6,6 +6,7 @@ html,n=re.subn(r'(<script data-seed>)const SEED=.*?;</script>',r'\1const SEED=[]
 if n!=1:
     raise RuntimeError('Cannot locate seed data; no demo was written.')
 html=html.replace("renal-insight-v1", "renal-insight-public-demo-v1")
+html=re.sub(r'\b\d{6}-\d{2}\b','[ตัวอย่าง HN]',html)
 html=html.replace('แผนกไตเทียม · โรงพยาบาลบ้านแพ้ว','ระบบสาธิต · ไม่มีข้อมูลผู้ป่วยเริ่มต้น')
 out=root/'public-demo';out.mkdir(exist_ok=True)
 (out/'index.html').write_text(html,encoding='utf-8')
